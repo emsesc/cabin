@@ -45,15 +45,43 @@ for i in responses:
 
 print("Step data: ", stepContent)
 
+count = 0
+issue = 0
+final = ""
+issue = 1
+
 def createStep(title, descr, event, response, issue):
-  content = "    - title: '%s'\n      description: %s\n      event: %s\n      link: {{ repoUrl }}/issues\n      actions:\n        - type: respond\n          with: %s\n          issue: %s" % (title, descr, event, response, issue)
+  content = "    - title: '%s'\n      description: %s\n      event: %s\n      link: {{ repoUrl }}/issues\n      actions:\n        - type: respond\n          with: %s\n          issue: %s\n" % (title, descr, event, response, issue)
   return content
+
+for i in range(nweeks):
+  if i == 0:
+    issue = 1
+  else:
+    issue += steps[i] + 1
+  for y in range(steps[i+1]):
+    if y == steps[i+1]-1:
+      response = "feedback.md"
+    else:
+      try:
+        response = responses[count+1]
+      except:
+        print("ERROR")
+    final += createStep(stepContent[responses[count]][0], stepContent[responses[count]][1], "pull_request.closed", response, issue)
+    print(steps[i+1]-1, nweeks - 1)
+    if y == steps[i+1]-1:
+      final += "    - title: 'Week %s: Feedback'\n      description: Provide your feedback for Week %s!\n      event: issue_comment.created\n      link: {{ repoUrl }}/issues\n      actions:\n        - type: respond\n          with: %s\n          issue: %s\n        - type: createIssue\n          title: Week %s\n          body: %s\n        - type: closeIssue\n          issue: %s\n" % (i+1, i+1, str(i+1)+"-complete.md", issue, i+2, responses[count], issue)
+    elif y == steps[i+1]-1 and i == nweeks - 1:
+      final += "    - title: 'Week %s: Feedback'\n      description: Provide your feedback for Week %s!\n      event: issue_comment.created\n      link: {{ repoUrl }}/issues\n      actions:\n        - type: respond\n          with: %s\n          issue: %s\n        - type: closeIssue\n          issue: %s\n" % (i+1, i+1, str(i+1)+"-complete.md", issue)
+    count += 1
+
+print(final)
 
 # def writeyml():
 content = "title: %s\ndescription: >-\n    %s\ntemplate:\n    name: %s\n    repo: %s\nbefore:\n    - type: createIssue\n      title: Week 1\n      body: %s" % (course_name, course_descr, "learninglab-template", "sample-learninglab-template", responses[0])
 
 with open("config.yml", "x") as file:
-  file.write(content + "\nsteps:\n" + createStep("Title", "This is a description", "issue_comment.created", responses[1], "1"))
+  file.write(content + "\nsteps:\n" + final)
 
 
 def createFiles():
