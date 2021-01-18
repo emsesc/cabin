@@ -22,12 +22,26 @@ for i in range(1,nweeks+1):
 
 print("Number of steps each week:", steps)
 
-def createStep():
+# determining course name and description
+pattern1 = "# (.*)"
+pattern2 = "(?<=\*)[^*]+(?=\*)"
+with open("./course-details.md", "r") as file:
+  file = file.read()
+  course_name = re.findall(pattern1, file)[0]
+  course_descr = re.findall(pattern2, file)[0]
   
 
+print("Course name: " + course_name + "\n" + "Course description: " + course_descr)
+
+# def createStep():
+
+
 def createFiles():
+  # create feedback.md
   with open("./responses/feedback.md", "x") as myfile:
     myfile.write("## Providing Feedback\n\nWhat was confusing about this week? If you could change or add something to this week, what would you do? Your feedback is valued and appreciated!")
+  
+
   for i in range(1,nweeks+1):
     with open("./responses/" + str(i) + "-complete.md", "x") as response:
       if i == nweeks+1:
