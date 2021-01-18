@@ -1,0 +1,95 @@
+title: Sample Learning Lab
+description: >-
+    Course description
+template:
+    name: learninglab-template
+    repo: sample-learninglab-template
+before:
+    - type: createIssue
+      title: Week 1
+      body: 1.1-Week 1 Step 1.md
+steps:
+    - title: 'Week 1: Week 1 Step 1'
+      description: This is the Learning Lab content. (1.1)
+      event: pull_request.closed
+      link: '{{ repoUrl }}/issues'
+      actions:
+        - type: respond
+          with: 1.2-Week 1 Step 2.md
+          issue: 1
+    - title: 'Week 1: Week 1 Step 2'
+      description: This is the Learning Lab content. (1.2)
+      event: pull_request.closed
+      link: '{{ repoUrl }}/issues'
+      actions:
+        - type: respond
+          with: feedback.md
+          issue: 1
+    - title: 'Week 1: Feedback'
+      description: Provide your feedback for Week 1!
+      event: issue_comment.created
+      link: '{{ repoUrl }}/issues'
+      actions:
+        - type: respond
+          with: 1-complete.md
+          issue: 1
+        - type: createIssue
+          title: Week 2
+          body: 2.1-Week 2 Step 1.md
+        - type: closeIssue
+          issue: 1
+    - title: 'Week 2: Week 2 Step 1'
+      description: This is the Learning Lab content. (2.1)
+      event: pull_request.closed
+      link: '{{ repoUrl }}/issues'
+      actions:
+        - type: respond
+          with: 2.2-Week 2 Step 2.md
+          issue: 4
+    - title: 'Week 2: Week 2 Step 2'
+      description: This is the Learning Lab content. (2.2)
+      event: pull_request.closed
+      link: '{{ repoUrl }}/issues'
+      actions:
+        - type: respond
+          with: feedback.md
+          issue: 4
+    - title: 'Week 2: Feedback'
+      description: Provide your feedback for Week 2!
+      event: issue_comment.created
+      link: '{{ repoUrl }}/issues'
+      actions:
+        - type: respond
+          with: 2-complete.md
+          issue: 4
+        - type: createIssue
+          title: Week 3
+          body: 3.1-Week 3 Step 1.md
+        - type: closeIssue
+          issue: 4
+    - title: 'Week 3: Week 3 Step 1'
+      description: This is the Learning Lab content. (3.1)
+      event: pull_request.closed
+      link: '{{ repoUrl }}/issues'
+      actions:
+        - type: respond
+          with: 3.2-Week 3 Step 2.md
+          issue: 7
+    - title: 'Week 3: Week 3 Step 2'
+      description: This is the Learning Lab content. (3.2)
+      event: pull_request.closed
+      link: '{{ repoUrl }}/issues'
+      actions:
+        - type: respond
+          with: feedback.md
+          issue: 7
+    - title: 'Week 3: Feedback'
+      description: Provide your feedback for Week 3!
+      event: issue_comment.created
+      link: '{{ repoUrl }}/issues'
+      actions:
+        - type: respond
+          with: 3-complete.md
+          issue: 7
+        - type: closeIssue
+          issue: 7
