@@ -9,6 +9,8 @@ steps = {}
 for file in responses:
   weeks.append(file[0])
 
+print(weeks)
+
 nweeks = int(max(weeks))
 print("Number of weeks:", nweeks)
 
@@ -23,15 +25,27 @@ for i in range(1,nweeks+1):
 print("Number of steps each week:", steps)
 
 # determining course name and description
-pattern1 = "# (.*)"
-pattern2 = "(?<=\*)[^*]+(?=\*)"
+name = "# (.*)"
+content = "(?<=\*)[^*]+(?=\*)"
 with open("./course-details.md", "r") as file:
   file = file.read()
-  course_name = re.findall(pattern1, file)[0]
-  course_descr = re.findall(pattern2, file)[0]
-  
+  course_name = re.findall(name, file)[0]
+  course_descr = re.findall(content, file)[0]
 
 print("Course name: " + course_name + "\n" + "Course description: " + course_descr)
+
+# determining step names and descriptions
+stepContent = {}
+for i in responses:
+  with open("./responses/" + i, "r") as file:
+    title = "## (.*)"
+    des = "#### (.*)"
+    file = file.read()
+    step_name = re.findall(title, file)[0]
+    step_descr = re.findall(des, file)[0]
+    stepContent[i] = [step_name, step_descr]
+
+print(stepContent)
 
 # def createStep():
 
@@ -55,7 +69,8 @@ def createFiles():
 # we need to know:
 # - number of weeks (done)
 # - number of steps in each week (done)
-# - each step's title + description
+# - each step's title + description (done)
+# - course title + description (done)
 
 # we need to create:
 # - each yml step
