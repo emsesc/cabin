@@ -4,8 +4,6 @@ import re
 responses = os.listdir("./responses")
 weeks = []
 steps = {}
-count = 0
-nweeks = 0
 issue = 1
 
 # determining number of weeks
@@ -52,10 +50,10 @@ def createStep(week, title, descr, event, response, issue):
   content = "    - title: 'Week %s: %s'\n      description: %s\n      event: %s\n      link: '{{ repoUrl }}/issues'\n      actions:\n        - type: respond\n          with: %s\n          issue: %s\n" % (week, title, descr, event, response, issue)
   return content
 
-
 def writeyml():
+  print("Creating the config.yml file...")
   final = ""
-  content = "title: %s\ndescription: >-\n    %s\ntemplate:\n    name: %s\n    repo: %s\nbefore:\n    - type: createIssue\n      title: Week 1\n      body: %s" % (course_name, course_descr, "learninglab-template", "sample-learninglab-template", responses[0])
+  content = "title: %s\ndescription: >-\n    %s\ntemplate:\n    name: %s\n    repo: %s\nbefore:\n    - type: createIssue\n      title: Week 1\n      body: %s" % (course_name, course_descr, "learninglab-template", "your-learninglab-template", responses[0])
   count = 0
   for i in range(nweeks):
     if i == 0:
@@ -79,6 +77,7 @@ def writeyml():
   return configyml
 
 with open("./responses/feedback.md", "x") as myfile:
+  print("Creating response files...")
   myfile.write("## Providing Feedback\n\nWhat was confusing about this week? If you could change or add something to this week, what would you do? Your feedback is valued and appreciated!")
 
 for i in range(1,nweeks+1):

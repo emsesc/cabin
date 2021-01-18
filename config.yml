@@ -1,9 +1,9 @@
 title: Sample Learning Lab
 description: >-
-    Course description
+    Course description: This is a longer version of the course description to ensure that this script actually works...
 template:
     name: learninglab-template
-    repo: sample-learninglab-template
+    repo: your-learninglab-template
 before:
     - type: createIssue
       title: Week 1
@@ -52,6 +52,22 @@ steps:
       link: '{{ repoUrl }}/issues'
       actions:
         - type: respond
+          with: 3.1-Week 3 Step 1.md
+          issue: 4
+    - title: 'Week 2: Week 3 Step 1'
+      description: This is the Learning Lab content. (3.1)
+      event: pull_request.closed
+      link: '{{ repoUrl }}/issues'
+      actions:
+        - type: respond
+          with: 3.2-Week 3 Step 2.md
+          issue: 4
+    - title: 'Week 2: Week 3 Step 2'
+      description: This is the Learning Lab content. (3.2)
+      event: pull_request.closed
+      link: '{{ repoUrl }}/issues'
+      actions:
+        - type: respond
           with: feedback.md
           issue: 4
     - title: 'Week 2: Feedback'
@@ -64,25 +80,25 @@ steps:
           issue: 4
         - type: createIssue
           title: Week 3
-          body: 3.1-Week 3 Step 1.md
+          body: 4.1-Week 4 Step 1.md
         - type: closeIssue
           issue: 4
-    - title: 'Week 3: Week 3 Step 1'
-      description: This is the Learning Lab content. (3.1)
+    - title: 'Week 3: Week 4 Step 1'
+      description: This is the Learning Lab content. (4.1)
       event: pull_request.closed
       link: '{{ repoUrl }}/issues'
       actions:
         - type: respond
-          with: 3.2-Week 3 Step 2.md
-          issue: 7
-    - title: 'Week 3: Week 3 Step 2'
-      description: This is the Learning Lab content. (3.2)
+          with: 4.2-Week 4 Step 2.md
+          issue: 9
+    - title: 'Week 3: Week 4 Step 2'
+      description: This is the Learning Lab content. (4.2)
       event: pull_request.closed
       link: '{{ repoUrl }}/issues'
       actions:
         - type: respond
           with: feedback.md
-          issue: 7
+          issue: 9
     - title: 'Week 3: Feedback'
       description: Provide your feedback for Week 3!
       event: issue_comment.created
@@ -90,6 +106,64 @@ steps:
       actions:
         - type: respond
           with: 3-complete.md
-          issue: 7
+          issue: 9
+        - type: createIssue
+          title: Week 4
+          body: 4.3-Week 4 Step 3.md
         - type: closeIssue
-          issue: 7
+          issue: 9
+    - title: 'Week 4: Week 4 Step 3'
+      description: This is the Learning Lab content. (4.3)
+      event: pull_request.closed
+      link: '{{ repoUrl }}/issues'
+      actions:
+        - type: respond
+          with: 2.3-Week 2 Step 3.md
+          issue: 12
+    - title: 'Week 4: Week 2 Step 3'
+      description: This is the Learning Lab content. (2.3)
+      event: pull_request.closed
+      link: '{{ repoUrl }}/issues'
+      actions:
+        - type: respond
+          with: 2.4-Week 2 Step 4.md
+          issue: 12
+    - title: 'Week 4: Week 2 Step 4'
+      description: This is the Learning Lab content. (2.4)
+      event: pull_request.closed
+      link: '{{ repoUrl }}/issues'
+      actions:
+        - type: respond
+          with: feedback.md
+          issue: 12
+    - title: 'Week 4: Feedback'
+      description: Provide your feedback for Week 4!
+      event: issue_comment.created
+      link: '{{ repoUrl }}/issues'
+      actions:
+        - type: respond
+          with: 4-complete.md
+          issue: 12
+        - type: createIssue
+          title: Week 5
+          body: 5.1-Week 5 Step 1.md
+        - type: closeIssue
+          issue: 12
+    - title: 'Week 5: Week 5 Step 1'
+      description: This is the Learning Lab content. (5.1)
+      event: pull_request.closed
+      link: '{{ repoUrl }}/issues'
+      actions:
+        - type: respond
+          with: feedback.md
+          issue: 16
+    - title: 'Week 5: Feedback'
+      description: Provide your feedback for Week 5!
+      event: issue_comment.created
+      link: '{{ repoUrl }}/issues'
+      actions:
+        - type: respond
+          with: 5-complete.md
+          issue: 16
+        - type: closeIssue
+          issue: 16
