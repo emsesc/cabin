@@ -1,7 +1,8 @@
 import os
 import re
 
-responses = os.listdir("./responses")
+responses = sorted(os.listdir("./responses"))
+print(responses)
 weeks = []
 steps = {}
 issue = 1
