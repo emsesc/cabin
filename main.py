@@ -45,13 +45,15 @@ for i in responses:
 
 print("Step data: ", stepContent)
 
-# def createStep():
+def createStep(title, descr, event, response, issue):
+  content = "    - title: '%s'\n      description: %s\n      event: %s\n      link: {{ repoUrl }}/issues\n      actions:\n        - type: respond\n          with: %s\n          issue: %s" % (title, descr, event, response, issue)
+  return content
 
 # def writeyml():
-content = "title: %s\ndescription: >-\n    %s\ntemplate:\n    name: %s\n    repo: %s\nbefore:\n    - type: %s\n      title: %s\n      body: %s" % (course_name, course_descr, "learninglab-template", "sample-learninglab-template", "createIssue", "Week 1", responses[0])
+content = "title: %s\ndescription: >-\n    %s\ntemplate:\n    name: %s\n    repo: %s\nbefore:\n    - type: createIssue\n      title: Week 1\n      body: %s" % (course_name, course_descr, "learninglab-template", "sample-learninglab-template", responses[0])
 
 with open("config.yml", "x") as file:
-  file.write(content)
+  file.write(content + "\nsteps:\n" + createStep("Title", "This is a description", "issue_comment.created", responses[1], "1"))
 
 
 def createFiles():

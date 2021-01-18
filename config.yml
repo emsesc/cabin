@@ -8,3 +8,12 @@ before:
     - type: createIssue
       title: Week 1
       body: 1.1-Week 1 Step 1.md
+steps:
+    - title: 'Title'
+      description: This is a description
+      event: issue_comment.created
+      link: {{ repoUrl }}/issues
+      actions:
+        - type: respond
+          with: 1.2-Week 1 Step 2.md
+          issue: 1
