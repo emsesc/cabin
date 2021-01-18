@@ -9,8 +9,6 @@ steps = {}
 for file in responses:
   weeks.append(file[0])
 
-print(weeks)
-
 nweeks = int(max(weeks))
 print("Number of weeks:", nweeks)
 
@@ -45,9 +43,15 @@ for i in responses:
     step_descr = re.findall(des, file)[0]
     stepContent[i] = [step_name, step_descr]
 
-print(stepContent)
+print("Step data: ", stepContent)
 
 # def createStep():
+
+# def writeyml():
+content = "title: %s\ndescription: >-\n    %s\ntemplate:\n    name: %s\n    repo: %s\nbefore:\n    - type: %s\n      title: %s\n      body: %s" % (course_name, course_descr, "learninglab-template", "sample-learninglab-template", "createIssue", "Week 1", responses[0])
+
+with open("config.yml", "x") as file:
+  file.write(content)
 
 
 def createFiles():
