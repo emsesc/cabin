@@ -132,4 +132,5 @@ Once both the change to the `learninglabauto.py` file in `scripts/` and the addi
 Linked [here](https://github.com/emsesc/sample-learninglab) is a sample containing correctly formatted file names and structures.
 
 Watch this video for a walkthrough:
+
 [![Watch the video](https://cdn.loom.com/sessions/thumbnails/d21df3bc8776488b81c6682449e81776-with-play.gif)](https://www.loom.com/share/d21df3bc8776488b81c6682449e81776)
