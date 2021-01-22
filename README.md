@@ -1,5 +1,9 @@
 # learning-lab-automator
 
+The Github Action automatically generates the needed files to create a Github Learning Lab. Refer to the below documentation for formatting requirements, how it works, and how to incorporate it:
+
+---
+
 ## Adding it to a repository
 
 * Place `learninglabauto.py` and `commit.sh` in `/scripts`
@@ -47,8 +51,6 @@ jobs:
 ## Instructions:
 1. Place all response files in `/responses`
 2. Create `course-details.md` in root directory
-
-The Github Action automatically generates the needed files to create a Github Learning Lab. Refer to the below documentation for formatting requirements and how it works:
 
 ### :one: Input and Output
 
