@@ -9,7 +9,10 @@ issue = 1
 
 # determining number of weeks
 for file in responses:
-  weeks.append(file[0])
+  if file[0].isnumeric():
+    weeks.append(file[0])
+  else:
+    responses.remove(file)
 
 nweeks = int(max(weeks))
 print("Number of weeks:", nweeks)
@@ -90,16 +93,3 @@ for i in range(1,nweeks+1):
 
 with open("config.yml", "x") as file:
   file.write(writeyml())
- 
-
-# we need to know:
-# - number of weeks (done)
-# - number of steps in each week (done)
-# - each step's title + description (done)
-# - course title + description (done)
-
-# we need to create:
-# - each yml step (done)
-# - completed response files (done)
-# - a feedback.md file (done)
-# - a new template repository
