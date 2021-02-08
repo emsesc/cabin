@@ -1,6 +1,6 @@
 # Sample Learning Lab
 
-*Course description: This is a longer version of the course description to ensure that this script actually works...*
+*Course description: Place your course description here...*
 
 ## **Week 1**
 **Learning Objectives**
