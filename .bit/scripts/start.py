@@ -19,7 +19,7 @@ try:
   for delete in rm:
     responses.remove(delete)
 
-  with open("../../.bit/.info", "w+") as myfile:
+  with open(".bit/.info", "w+") as myfile:
     total["responses"] = responses
     total["weeks"] = weeks
     print(total)
