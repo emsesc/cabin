@@ -8,18 +8,18 @@ steps = {}
 
 name = "# (.*)"
 content = "(?<=\*)[^*]+(?=\*)"
-with open("../../.bit/course-details.md", "r") as file:
+with open(".bit/course-details.md", "r") as file:
   file = file.read()
   course_name = re.findall(name, file)[0]
   course_descr = re.findall(content, file)[0]
 
-with open("../../.bit/.info", "r") as myfile:
+with open(".bit/.info", "r") as myfile:
   readList = ast.literal_eval(myfile.read())
   print(readList)
   responses = readList["responses"]
   weeks = readList["weeks"]
 
-with open("../../.bit/.config", "r") as myfile:
+with open(".bit/.config", "r") as myfile:
   stepContent = ast.literal_eval(myfile.read())
 
 for i in range(1,int(max(weeks))+1):
@@ -60,18 +60,18 @@ def writeyml():
   return configyml
 
 try:
-  with open("../../.bit/responses/feedback.md", "w+") as myfile:
+  with open(".bit/responses/feedback.md", "w+") as myfile:
     print("Creating response files...")
     myfile.write("## Providing Feedback\n\nWhat was confusing about this week? If you could change or add something to this week, what would you do? Your feedback is valued and appreciated!")
 
   for i in range(1,int(max(weeks))+1):
-    with open("../../.bit/responses/" + str(i) + "-complete.md", "w+") as response:
+    with open(".bit/responses/" + str(i) + "-complete.md", "w+") as response:
       if i == int(max(weeks)):
         response.write("That's it for Week %s! Great job on finishing the course!" % str(i))
       else:
         response.write("That's it for Week %s, move on to Week %s in your new issue!" % (str(i), str(i + 1)))
 
-  with open("../../.bit/config.yml", "w+") as file:
+  with open(".bit/config.yml", "w+") as file:
     file.write(writeyml())
 except:
   raise Exception("[ERROR] Was not able to create response and/or config.yml files. Refer to errors in previous steps for guidance.")
