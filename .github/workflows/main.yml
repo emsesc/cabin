@@ -2,7 +2,7 @@ name: Syncing Your Cabin
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
 
@@ -18,15 +18,24 @@ jobs:
         with:
           python-version: 3.7
 
-      - name: Execute Python script
+      - name: Getting Filenames
         run: |
-          python scripts/main.py
+          python .bit/scripts/start.py
+
+      - name: Getting Descriptions
+        run: |
+          python .bit/scripts/parse.py
+
+      - name: Creating Config Files
+        run: |
+          python .bit/scripts/create.py
           
-      - name: setup git config
+      - name: Setup Git Config
         run: |
           git config user.name ${{ secrets.USERNAME }}
           git config user.email ${{ secrets.EMAIL }}
-      - name: commit changes
+
+      - name: Commit Synced Changes
         run: |
-          chmod +x ./scripts/commit.sh
-          ./scripts/commit.sh
+          chmod +x .bit/scripts/commit.sh
+          .bit/scripts/commit.sh

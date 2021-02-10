@@ -2,4 +2,4 @@
 
 git add . 
 git commit -m "Syncing course files"
-git push origin master
+git push origin main
