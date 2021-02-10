@@ -38,4 +38,4 @@ jobs:
       - name: Commit Synced Changes
         run: |
           chmod +x .bit/scripts/commit.sh
-          ./scripts/commit.sh
+          .bit/scripts/commit.sh
