@@ -10,7 +10,7 @@ before:
       body: 1.1-Week 1 Step 1.md
 steps:
     - title: 'Week 1: Week 1 Step 1'
-      description: This is the Learning Lab content. (1.1) (test 1 to see if config.yml changes)
+      description: This is the Learning Lab content. (1.1)
       event: pull_request.closed
       link: '{{ repoUrl }}/issues'
       actions:
