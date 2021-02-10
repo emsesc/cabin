@@ -1,6 +1,6 @@
 import os
 
-responses = sorted(os.listdir("../../.bit/responses"))
+responses = sorted(os.listdir(".bit/responses"))
 
 total = {}
 weeks = []
