@@ -5,7 +5,7 @@ weeks = []
 responses = []
 steps = {}
 
-with open("../../.bit/.info", "r") as myfile:
+with open(".bit/.info", "r") as myfile:
   readList = ast.literal_eval(myfile.read())
   print(readList)
   responses = readList["responses"]
@@ -27,7 +27,7 @@ try:
   # determining course name and description
   name = "# (.*)"
   content = "(?<=\*)[^*]+(?=\*)"
-  with open("../../.bit/course-details.md", "r") as file:
+  with open(".bit/course-details.md", "r") as file:
     file = file.read()
     course_name = re.findall(name, file)[0]
     course_descr = re.findall(content, file)[0]
@@ -40,7 +40,7 @@ try:
   # determining step names and descriptions
   stepContent = {}
   for i in responses:
-    with open("../../.bit/responses/" + i, "r") as file:
+    with open(".bit/responses/" + i, "r") as file:
       title = "## (.*)"
       des = "#### (.*)"
       file = file.read()
@@ -50,7 +50,7 @@ try:
 
   print("Step data: ", stepContent)
   
-  with open("../../.bit/.config", "w+") as myfile:
+  with open(".bit/.config", "w+") as myfile:
     myfile.write(str(stepContent))
 except:
   raise Exception("-------------------------\n[WARNING] Syncing was not successful. Please check your response files and ensure that the content adheres with the specified format.\n-------------------------")
