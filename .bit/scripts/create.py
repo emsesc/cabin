@@ -29,8 +29,8 @@ for i in range(1,int(max(weeks))+1):
         count += 1
   steps[i] = count
 
-def createStep(week, title, descr, event, response, issue):
-  content = "    - title: 'Week %s: %s'\n      description: %s\n      event: %s\n      link: '{{ repoUrl }}/issues'\n      actions:\n        - type: respond\n          with: %s\n          issue: %s\n" % (week, title, descr, event, response, issue)
+def createStep(week, title, descr, event, response, files):
+  content = "    - title: 'Week %s: %s'\n      description: %s\n      event: %s\n      link: '{{ repoUrl }}/issues'\n      actions:\n        - type: respond\n          with: %s\n          files: %s\n" % (week, title, descr, event, response, files)
   return content
 
 def writeyml():
@@ -39,21 +39,17 @@ def writeyml():
   content = "title: %s\ndescription: >-\n    %s\ntemplate:\n    name: %s\n    repo: %s\nbefore:\n    - type: createIssue\n      title: Week 1\n      body: %s" % (course_name, course_descr, "learninglab-template", "your-learninglab-template", responses[0])
   count = 0
   for i in range(int(max(weeks))):
-    if i == 0:
-      issue = 1
-    else:
-      issue += steps[i] + 1
     for y in range(steps[i+1]):
       if y == steps[i+1]-1:
         response = "feedback.md"
       else:
         response = responses[count+1]
-      final += createStep(i+1, stepContent[responses[count]][0], stepContent[responses[count]][1], "pull_request.closed", response, issue)
+      final += createStep(i+1, stepContent[responses[count]][0], stepContent[responses[count]][1], "pull_request.closed", response, stepContent[responses[count]][2])
 
       if y == steps[i+1]-1 and i == int(max(weeks)) - 1:
-        final += "    - title: 'Week %s: Feedback'\n      description: Provide your feedback for Week %s!\n      event: issue_comment.created\n      link: '{{ repoUrl }}/issues'\n      actions:\n        - type: respond\n          with: %s\n          issue: %s\n        - type: closeIssue\n          issue: %s\n" % (i+1, i+1, str(i+1)+"-complete.md", issue, issue)
+        final += "    - title: 'Week %s: Feedback'\n      description: Provide your feedback for Week %s!\n      event: issue_comment.created\n      link: '{{ repoUrl }}/issues'\n      actions:\n        - type: respond\n          with: %s\n        - type: closeIssue\n" % (i+1, i+1, str(i+1)+"-complete.md")
       elif y == steps[i+1]-1:
-        final += "    - title: 'Week %s: Feedback'\n      description: Provide your feedback for Week %s!\n      event: issue_comment.created\n      link: '{{ repoUrl }}/issues'\n      actions:\n        - type: respond\n          with: %s\n          issue: %s\n        - type: createIssue\n          title: Week %s\n          body: %s\n        - type: closeIssue\n          issue: %s\n" % (i+1, i+1, str(i+1)+"-complete.md", issue, i+2, responses[count+1], issue)
+        final += "    - title: 'Week %s: Feedback'\n      description: Provide your feedback for Week %s!\n      event: issue_comment.created\n      link: '{{ repoUrl }}/issues'\n      actions:\n        - type: respond\n          with: %s\n        - type: createIssue\n          title: Week %s\n          body: %s\n        - type: closeIssue\n" % (i+1, i+1, str(i+1)+"-complete.md", i+2, responses[count+1])
       count += 1
   
   configyml = content + "\nsteps:\n" + final
