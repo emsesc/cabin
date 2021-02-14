@@ -42,11 +42,13 @@ try:
   for i in responses:
     with open(".bit/responses/" + i, "r") as file:
       title = "## (.*)"
-      des = "#### (.*)"
+      des = "### (.*)"
+      move = "files: (.*)"
       file = file.read()
       step_name = re.findall(title, file)[0]
       step_descr = re.findall(des, file)[0]
-      stepContent[i] = [step_name, step_descr]
+      step_move = re.findall(move, file)[0].split(", ")
+      stepContent[i] = [step_name, step_descr, step_move]
 
   print("Step data: ", stepContent)
   
