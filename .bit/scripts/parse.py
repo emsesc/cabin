@@ -43,7 +43,7 @@ try:
     with open(".bit/responses/" + i, "r") as file:
       title = "## (.*)"
       des = "### (.*)"
-      move = "#### Edit these files to move on: (.*)"
+      move = "files: (.*)"
       file = file.read()
       step_name = re.findall(title, file)[0]
       step_descr = re.findall(des, file)[0]
