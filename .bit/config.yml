@@ -24,7 +24,7 @@ steps:
       actions:
         - type: respond
           with: 1.3-Week 1 Step 3.md
-          files: ['index.html', 'js/config.js']
+          files: ['js/config.js']
     - title: 'Week 1: Week 1 Step 3'
       description: This is the Learning Lab content. (1.3)
       event: pull_request.closed
