@@ -1,1 +1,0 @@
-That's it for Week 4, move on to Week 5 in your new issue!
