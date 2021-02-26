@@ -16,7 +16,7 @@ steps:
       actions:
         - type: respond
           with: 1.2-Week 1 Step 2.md
-          files: ['README.md', 'js/config.js']
+          files: ['README.md', 'js/config.js', 'index.html']
     - title: 'Week 1: Week 1 Step 2'
       description: This is the Learning Lab content. (1.2)
       event: pull_request.closed
