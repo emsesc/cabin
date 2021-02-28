@@ -44,11 +44,15 @@ try:
       title = "## (.*)"
       des = "### (.*)"
       move = "files: (.*)"
+      stepType = "stepType: (.*)"
+      scripts = "scripts: (.*)"
       file = file.read()
       step_name = re.findall(title, file)[0]
       step_descr = re.findall(des, file)[0]
       step_move = re.findall(move, file)[0].split(", ")
-      stepContent[i] = [step_name, step_descr, step_move]
+      step_type = re.findall(stepType, file)[0]
+      step_scripts = re.findall(scripts, file)[0].split(",")
+      stepContent[i] = [step_name, step_descr, step_move, step_type, step_scripts]
 
   print("Step data: ", stepContent)
   
