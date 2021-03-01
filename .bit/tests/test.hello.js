@@ -5,7 +5,7 @@ catch(e) {
     throw new Error("FIZZBUZ AINT FIZZIN' - DANIEL");
 }
 
-let helloworld = hello.hello()
+let helloworld = hello()
 let test_output = "Hello World!"
 
 if(helloworld != test_output){
