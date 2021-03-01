@@ -2,7 +2,7 @@ name: Checking Your Cabin
 on:
   push:
     branches:
-      - main
+      - checks
 
 jobs:
 
