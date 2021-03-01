@@ -29,8 +29,8 @@ for i in range(1,int(max(weeks))+1):
         count += 1
   steps[i] = count
 
-def createStep(week, title, descr, event, response, files):
-  content = "    - title: 'Week %s: %s'\n      description: %s\n      event: %s\n      link: '{{ repoUrl }}/issues'\n      actions:\n        - type: respond\n          with: %s\n          files: %s\n" % (week, title, descr, event, response, files)
+def createStep(week, title, descr, event, response, files, stepType, ):
+  content = "    - title: 'Week %s: %s'\n      description: %s\n      event: %s\n      stepType: %s\n      actions:\n        - type: respond\n          with: %s\n          files: %s\n          scripts: %s\n" % (week, title, descr, event, stepType, response, files, scripts)
   return content
 
 def writeyml():
@@ -44,12 +44,12 @@ def writeyml():
         response = "feedback.md"
       else:
         response = responses[count+1]
-      final += createStep(i+1, stepContent[responses[count]][0], stepContent[responses[count]][1], "pull_request.closed", response, stepContent[responses[count]][2])
+      final += createStep(i+1, stepContent[responses[count]][0], stepContent[responses[count]][1], "pull_request.closed", response, stepContent[responses[count]][2], stepContent[responses[count]][3], stepContent[responses[count]][4])
 
       if y == steps[i+1]-1 and i == int(max(weeks)) - 1:
-        final += "    - title: 'Week %s: Feedback'\n      description: Provide your feedback for Week %s!\n      event: issue_comment.created\n      link: '{{ repoUrl }}/issues'\n      actions:\n        - type: respond\n          with: %s\n        - type: closeIssue\n" % (i+1, i+1, str(i+1)+"-complete.md")
+        final += "    - title: 'Week %s: Feedback'\n      description: Provide your feedback for Week %s!\n      event: issue_comment.created\n      actions:\n        - type: respond\n          with: %s\n        - type: closeIssue\n" % (i+1, i+1, str(i+1)+"-complete.md")
       elif y == steps[i+1]-1:
-        final += "    - title: 'Week %s: Feedback'\n      description: Provide your feedback for Week %s!\n      event: issue_comment.created\n      link: '{{ repoUrl }}/issues'\n      actions:\n        - type: respond\n          with: %s\n        - type: createIssue\n          title: Week %s\n          body: %s\n        - type: closeIssue\n" % (i+1, i+1, str(i+1)+"-complete.md", i+2, responses[count+1])
+        final += "    - title: 'Week %s: Feedback'\n      description: Provide your feedback for Week %s!\n      event: issue_comment.created\n      actions:\n        - type: respond\n          with: %s\n        - type: createIssue\n          title: Week %s\n          body: %s\n        - type: closeIssue\n" % (i+1, i+1, str(i+1)+"-complete.md", i+2, responses[count+1])
       count += 1
   
   configyml = content + "\nsteps:\n" + final
