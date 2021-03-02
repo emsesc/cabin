@@ -18,6 +18,10 @@ jobs:
         with:
           node-version: '14'
 
-      - name: Testing Hello World
+      - name: Step 1
         run: |
           node .bit/tests/test.hello.js
+          
+      - name: Step 2
+        run: |
+          node .bit/tests/test2.hello.js
