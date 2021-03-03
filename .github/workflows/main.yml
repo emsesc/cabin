@@ -12,11 +12,6 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v2
-        
-      - name: Authenticate
-        uses: oleksiyrudenko/gha-git-credentials@v2-latest
-        with:
-          token: '${{ secrets.ACCESS_SECRET }}'
 
       - name: Setup Python Environment
         uses: actions/setup-python@v2
@@ -41,6 +36,9 @@ jobs:
           git config user.email ${{ secrets.EMAIL }}
 
       - name: Commit Synced Changes
-        run: |
+        uses: oleksiyrudenko/gha-git-credentials@v2-latest
+        with:
+          token: '${{ secrets.ACCESS_SECRET }}'
+      - run: |
           chmod +x .bit/scripts/commit.sh
           .bit/scripts/commit.sh
