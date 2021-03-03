@@ -36,8 +36,12 @@ jobs:
           git config user.email ${{ secrets.EMAIL }}
 
       - name: Commit Synced Changes
-        uses: oleksiyrudenko/gha-git-credentials@v2-latest
+        uses: oleksiyrudenko/gha-git-credentials@v2.1
         with:
+          global: true
+          name: '${{ secrets.USERNAME }}'
+          email: '${{ secrets.EMAIL }}'
+          actor: '${{ secrets.USERNAME }}'
           token: '${{ secrets.ACCESS_SECRET }}'
       - run: |
           chmod +x .bit/scripts/commit.sh
