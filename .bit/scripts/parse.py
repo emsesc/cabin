@@ -51,7 +51,7 @@ try:
       step_descr = re.findall(des, file)[0]
       step_move = re.findall(move, file)[0].split(", ")
       step_type = re.findall(stepType, file)[0]
-      step_scripts = re.findall(scripts, file)[0].split(",")
+      step_scripts = re.findall(scripts, file)[0]
       stepContent[i] = [step_name, step_descr, step_move, step_type, step_scripts]
 
   print("Step data: ", stepContent)
