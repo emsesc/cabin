@@ -16,7 +16,7 @@ jobs:
       - name: Authenticate
         uses: oleksiyrudenko/gha-git-credentials@v2-latest
         with:
-          token: '${{ secrets.GITHUB_TOKEN }}'
+          token: '${{ secrets.ACCESS_SECRET }}'
 
       - name: Setup Python Environment
         uses: actions/setup-python@v2
