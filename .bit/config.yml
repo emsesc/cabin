@@ -67,8 +67,8 @@ steps:
           scripts: testStep1.js
     - title: 'Week 2: Week 2 Step 3'
       description: This is the Learning Lab content. (2.3)
-      event: workflow_run.completed
-      stepType: checks
+      event: issue_comment.created
+      stepType: IssueComment
       actions:
         - type: respond
           with: 2.4-Week 2 Step 4.md
@@ -76,8 +76,8 @@ steps:
           scripts: testStep1.js
     - title: 'Week 2: Week 2 Step 4'
       description: This is the Learning Lab content. (2.4)
-      event: workflow_run.completed
-      stepType: checks
+      event: issue_comment.created
+      stepType: IssueComment
       actions:
         - type: respond
           with: feedback.md
@@ -134,8 +134,8 @@ steps:
           scripts: testStep1.js
     - title: 'Week 4: Week 4 Step 2'
       description: This is the Learning Lab content. (4.2)
-      event: workflow_run.completed
-      stepType: checks
+      event: issue_comment.created
+      stepType: IssueComment
       actions:
         - type: respond
           with: 4.3-Week 4 Step 3.md
