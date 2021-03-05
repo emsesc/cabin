@@ -54,7 +54,7 @@ def createActions():
         print(createWorkStep(str(y+1), count, stepContent[responses[count]][4]))
         start += createWorkStep(str(y+1), count, stepContent[responses[count]][4])
       count += 1
-    with open(".github/workflows/week%s.yml" % (str(i+1)), "w+") as myfile:
+    with open(".bit/workflows/week%s.yml" % (str(i+1)), "w+") as myfile:
       myfile.write(start)
 
 def writeyml():
