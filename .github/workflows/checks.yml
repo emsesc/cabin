@@ -19,9 +19,8 @@ jobs:
           node-version: '14'
       
       - run: |
-          ls -a
-          pwd
-          ls ..
+          ls ../../
+          ls ../../../
 
       - name: Step 1
         run: |
