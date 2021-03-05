@@ -39,6 +39,7 @@ steps:
     - title: 'Week 1: Feedback'
       description: Provide your feedback for Week 1!
       event: issue_comment.created
+      stepType: IssueComment
       actions:
         - type: respond
           with: 1-complete.md
@@ -85,6 +86,7 @@ steps:
     - title: 'Week 2: Feedback'
       description: Provide your feedback for Week 2!
       event: issue_comment.created
+      stepType: IssueComment
       actions:
         - type: respond
           with: 2-complete.md
@@ -113,6 +115,7 @@ steps:
     - title: 'Week 3: Feedback'
       description: Provide your feedback for Week 3!
       event: issue_comment.created
+      stepType: IssueComment
       actions:
         - type: respond
           with: 3-complete.md
@@ -150,6 +153,7 @@ steps:
     - title: 'Week 4: Feedback'
       description: Provide your feedback for Week 4!
       event: issue_comment.created
+      stepType: IssueComment
       actions:
         - type: respond
           with: 4-complete.md
@@ -169,6 +173,7 @@ steps:
     - title: 'Week 5: Feedback'
       description: Provide your feedback for Week 5!
       event: issue_comment.created
+      stepType: IssueComment
       actions:
         - type: respond
           with: 5-complete.md
