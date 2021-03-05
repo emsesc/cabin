@@ -64,11 +64,21 @@ def writeyml():
   count = 0
   for i in range(int(max(weeks))):
     for y in range(steps[i+1]):
+      stepCat = ""
+
       if y == steps[i+1]-1:
         response = "feedback.md"
       else:
         response = responses[count+1]
-      final += createStep(i+1, stepContent[responses[count]][0], stepContent[responses[count]][1], "pull_request.closed", response, stepContent[responses[count]][2], stepContent[responses[count]][3], stepContent[responses[count]][4])
+
+      if stepContent[responses[count]][3] == "PRmerge":
+        stepCat = "pull_request.closed"
+      elif stepContent[responses[count]][3] == "checks":
+        stepCat = "workflow_run.completed"
+      elif stepContent[responses[count]][3] == "IssueComment":
+        stepCat = "issue_comment.created"
+
+      final += createStep(i+1, stepContent[responses[count]][0], stepContent[responses[count]][1], stepCat, response, stepContent[responses[count]][2], stepContent[responses[count]][3], stepContent[responses[count]][4])
 
       if y == steps[i+1]-1 and i == int(max(weeks)) - 1:
         final += "    - title: 'Week %s: Feedback'\n      description: Provide your feedback for Week %s!\n      event: issue_comment.created\n      actions:\n        - type: respond\n          with: %s\n        - type: closeIssue\n" % (i+1, i+1, str(i+1)+"-complete.md")
