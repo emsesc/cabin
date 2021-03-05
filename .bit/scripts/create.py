@@ -81,9 +81,9 @@ def writeyml():
       final += createStep(i+1, stepContent[responses[count]][0], stepContent[responses[count]][1], stepCat, response, stepContent[responses[count]][2], stepContent[responses[count]][3], stepContent[responses[count]][4])
 
       if y == steps[i+1]-1 and i == int(max(weeks)) - 1:
-        final += "    - title: 'Week %s: Feedback'\n      description: Provide your feedback for Week %s!\n      event: issue_comment.created\n      actions:\n        - type: respond\n          with: %s\n        - type: closeIssue\n" % (i+1, i+1, str(i+1)+"-complete.md")
+        final += "    - title: 'Week %s: Feedback'\n      description: Provide your feedback for Week %s!\n      event: issue_comment.created\n      stepType: IssueComment\n      actions:\n        - type: respond\n          with: %s\n        - type: closeIssue\n" % (i+1, i+1, str(i+1)+"-complete.md")
       elif y == steps[i+1]-1:
-        final += "    - title: 'Week %s: Feedback'\n      description: Provide your feedback for Week %s!\n      event: issue_comment.created\n      actions:\n        - type: respond\n          with: %s\n        - type: createIssue\n          title: Week %s\n          body: %s\n        - type: closeIssue\n" % (i+1, i+1, str(i+1)+"-complete.md", i+2, responses[count+1])
+        final += "    - title: 'Week %s: Feedback'\n      description: Provide your feedback for Week %s!\n      event: issue_comment.created\n      stepType: IssueComment\n      actions:\n        - type: respond\n          with: %s\n        - type: createIssue\n          title: Week %s\n          body: %s\n        - type: closeIssue\n" % (i+1, i+1, str(i+1)+"-complete.md", i+2, responses[count+1])
       count += 1
   
   configyml = content + "\nsteps:\n" + final
